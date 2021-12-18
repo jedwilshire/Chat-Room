@@ -17,7 +17,7 @@ server_message = ''
 while client_message != 'QUIT' and server_message != 'QUIT':
     server_message = server_socket.recv(1024).decode()
     print(server_name, ':', server_message)
-    client_message = input('>>>')
+    client_message = input('>>> ')
     server_socket.send(client_message.encode())
     
 server_socket.close()

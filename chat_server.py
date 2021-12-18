@@ -25,7 +25,7 @@ connection.send(host_name.encode())
 client_message = ''
 host_message = ''
 while client_message != 'QUIT' and host_message != 'QUIT':
-    server_message = input('>>>')
+    server_message = input('>>> ')
     connection.send(server_message.encode())
     client_message = connection.recv(1024).decode()
     print(client, ':', client_message)
