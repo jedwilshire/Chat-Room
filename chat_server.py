@@ -13,14 +13,20 @@ chat_socket.bind( (host_name, port) )
 print('New socket binding succcessful!')
 print('Your IP Address is:', ip)
 print('Your name is:', host_name)
+
+chat_socket.listen(1)
 connection, address = chat_socket.accept()
 print('Connected to', address[0])
+
 client = connection.recv(1024).decode()
 print(client, 'has connected.')
 # send first message : our name
 connection.send(host_name.encode())
-while True:
-    message = input('>>>')
-    connection.send(message.encode())
-    message = connection.resv(1024).decode()
-    print(client, ':', message)
+client_message = ''
+host_message = ''
+while client_message != 'QUIT' and host_message != 'QUIT':
+    server_message = input('>>>')
+    connection.send(server_message.encode())
+    client_message = connection.resv(1024).decode()
+    print(client, ':', client_message)
+chat_socket.close()
