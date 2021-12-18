@@ -27,6 +27,6 @@ host_message = ''
 while client_message != 'QUIT' and host_message != 'QUIT':
     server_message = input('>>>')
     connection.send(server_message.encode())
-    client_message = connection.resv(1024).decode()
+    client_message = connection.recv(1024).decode()
     print(client, ':', client_message)
 chat_socket.close()
